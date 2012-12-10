@@ -13,6 +13,9 @@
             0; overflow: hidden; min-width: 1000px; min-height: 800px; } #wrapper {
             position: absolute; left: 0; top:0; width: 100%; height: 100%; background-color:
             #00ccff; } #clip { min-width:100% !important; min-height: 100% !important;
+            } #credits { position: absolute; left: 20; bottom:20; color:#ffffff; font-family:
+            'Source Code Pro', sans-serif; font-weight: 600; font-size: 12px; margin:
+            5px; } a { color:#ccff00; } a:hover { text-decoration:underline; color:#eee;
             } .video-js { background-color: #000; position: relative; padding: 0; font-size:
             10px; vertical-align: middle; } .video-js .vjs-tech { position: absolute;
             top: 0; left: 0; /*width: 100%;*/ /*height: 100%;*/ min-width:100% !important;
@@ -252,57 +255,62 @@
             -100px -75px } .vjs-default-skin .vjs-chapters-button ul { width: 20em;
             left: -8.5em; } }
         </style>
-        <!-- <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet"> -->
-        <script src="http://vjs.zencdn.net/c/video.js">
-        </script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-                        
-        </script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'
+        type='text/css'>
     </head>
     
     <body>
         <div id="site">
             <div id="wrapper">
-                <video id="clip" class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="" type='video/mp4'>
-                </video>
+                <video id="clip" class="video-js vjs-default-skin" data-setup="{}" </video>
+            </div>
+            <div id="credits">
+                <p>
+                    made by
+                    <a href="http://www.twitter.com/izaiasdotcom" target="_blank">@izaiasdotcom</a>
+                    , powered by
+                    <a href="http://www.twitter.com/videojs" target="_blank">@videojs</a>
+                </p>
             </div>
         </div>
+        <script src="http://vjs.zencdn.net/c/video.js">
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+        </script>
         <script type="text/javascript">
-        	$(document).ready(function() {
+                	$(document).ready(function() {
 
-			    _V_("clip").ready(function() {
+        	    _V_("clip").ready(function() {
 
-			        myPlayer = this;
+        	        myPlayer = this;
 
-			        createVideo('http://video-js.zencoder.com/oceans-clip.mp4');
-			        // setTimeout(destroyVideo, 6000);
+        	        myPlayer.src([{
+        	            type: "video/mp4",
+        	            src: "http://video-js.zencoder.com/oceans-clip.mp4"
+        	        }, {
+        	            type: "video/webm",
+        	            src: "http://video-js.zencoder.com/oceans-clip.webm"
+        	        }, {
+        	            type: "video/ogg",
+        	            src: "http://video-js.zencoder.com/oceans-clip.ogv"
+        	        }]);
 
-			    });
-			});
-
-			function createVideo(url) {
-
-			    myPlayer.src({
-			        type: "video/mp4",
-			        src: url
-			    });
-
-			    myPlayer.play();
-			    myPlayer.requestCover();
-			}
-
-
-			function destroyVideo() {
-			    myPlayer.pause();
-
-			    myPlayer.src({
-			        type: "video/mp4",
-			        src: ""
-			    });
-			}
-
-			
+        	        myPlayer.play();
+        	    });
+        	});
+        </script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30712359-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
         </script>
     </body>
 
